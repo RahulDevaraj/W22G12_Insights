@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ActionBar a  = getSupportActionBar();
-        a.setDefaultDisplayHomeAsUpEnabled(true);
+        a.setDisplayShowHomeEnabled(true);
         a.setDisplayUseLogoEnabled(true);
         a.setLogo(R.mipmap.ic_launcher_logo);
     }
