@@ -3,4 +3,6 @@
     <string name="username">UserName</string>
     <string name="password">Password</string>
     <string name="btnTxt">Login</string>
+    <string name="txtSignIn">Sign In</string>
+    <string name="TxtViewOthers">Or Sign-in Using</string>
 </resources>
