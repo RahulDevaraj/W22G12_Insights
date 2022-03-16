@@ -19,6 +19,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     CheckBox show_hide_password;
     EditText edtTextPassword;
+    TextView txtViewFrgtPass,txtViewCreateAccount;
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
         show_hide_password = findViewById(R.id.show_hide_password);
         edtTextPassword = findViewById(R.id.edtTextPassword);
-        TextView txtViewFrgtPass = findViewById(R.id.forgot_password);
+        txtViewFrgtPass = findViewById(R.id.forgot_password);
+        txtViewCreateAccount = findViewById(R.id.txtViewCreateAccount);
+
         show_hide_password.setOnCheckedChangeListener((CompoundButton compoundButton, boolean isChecked)-> {
 
             if (!isChecked) {
@@ -48,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
         txtViewFrgtPass.setOnClickListener((View view)-> {
             Intent myIntent = new Intent(MainActivity.this,ForgotPassword.class);
             startActivity(myIntent);
+        });
+
+        txtViewCreateAccount.setOnClickListener((View view)-> {
+            startActivity(new Intent(MainActivity.this,Reggister.class));
         });
     }
 }

@@ -3,12 +3,14 @@
     <string name="username">UserName</string>
     <string name="password">Password</string>
     <string name="btnTxt">Login</string>
-    <string name="txtSignIn">Sign In</string>
+    <string name="txtSignUp">Sign Up</string>
     <string name="TxtViewOthers">Or Sign-in Using</string>
     <string name="StringShowPass">Show Password</string>
     <string name="StringForgotPass">Forgot Password?</string>
     <string name="StringNewUser">New User? Click here to Sign up</string>
     <string name="txtLoginIN">LOGIN</string>
-    <string name="txtEmail">Registered Email Id</string>
+    <string name="txtEmail">Email Id</string>
     <string name="stringInstructions">Please enter your Registered Email Id Below:</string>
+    <string name="txtConfirmPass">Confirm Password</string>
+    <string name="txtBacktoLogin">Already Registered? Click to Login</string>
 </resources>
