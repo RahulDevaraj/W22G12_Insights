@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Academics/Semester3/3175_Project/Insights/app/src/main/res/drawable/border.xml" value="0.2526041666666667" />
+        <entry key="..\:/Academics/Semester3/3175_Project/Insights/app/src/main/res/layout/activity_forgot_password.xml" value="0.23645833333333333" />
         <entry key="..\:/Academics/Semester3/3175_Project/Insights/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Academics/Semester3/3175_Project/Insights/app/src/main/res/layout/activity_reggister.xml" value="0.23645833333333333" />
         <entry key="..\:/Academics/Semester3/3175_Project/Insights/app/src/main/res/layout/activity_splash.xml" value="0.264" />
       </map>
     </option>
