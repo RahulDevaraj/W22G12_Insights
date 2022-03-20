@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.insights.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_addexp"
+        android:name="com.example.insights.ui.addexpense.AddExpense_Fragment"
+        android:label="@string/menu_AddExpense"
+        tools:layout="@layout/add_expense__fragment" />
+
+    <fragment
+        android:id="@+id/nav_viewexp"
+        android:name="com.example.insights.ui.viewexpense.ViewExpense_Fragment"
+        android:label="@string/menu_ShowExpense"
+        tools:layout="@layout/view_expense__fragment" />
+
+    <fragment
+        android:id="@+id/nav_paybills"
+        android:name="com.example.insights.ui.bills.PayBills_Fragment"
+        android:label="@string/menu_PayBills"
+        tools:layout="@layout/pay_bills__fragment" />
+
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.example.insights.ui.account.AccountDetails_Fragment"
+        android:label="@string/menu_AccDetails"
+        tools:layout="@layout/account_details__fragment" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.insights.ui.logout.Logout_Fragment"
+        android:label="@string/menu_Logout"
+        tools:layout="@layout/logout__fragment" />
+
+</navigation>
