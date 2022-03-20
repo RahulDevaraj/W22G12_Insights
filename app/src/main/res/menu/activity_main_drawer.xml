@@ -8,6 +8,7 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home" />
+
         <item
             android:id="@+id/nav_addexp"
             android:icon="@drawable/ic_baseline_add_24"
@@ -16,17 +17,25 @@
             android:id="@+id/nav_viewexp"
             android:icon="@drawable/ic_baseline_attach_money_24"
             android:title="@string/menu_ViewExpense" />
+
         <item
             android:id="@+id/nav_paybills"
             android:icon="@drawable/ic_baseline_done_24"
             android:title="@string/menu_PayBills" />
-        <item
-            android:id="@+id/nav_account"
-            android:icon="@drawable/ic_baseline_settings_24"
-            android:title="@string/menu_AccDetails" />
-        <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_baseline_login_24"
-            android:title="@string/menu_Logout" />
     </group>
+    <item android:title="">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_account"
+                    android:icon="@drawable/ic_baseline_settings_24"
+                    android:title="@string/menu_AccDetails" />
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_baseline_login_24"
+                    android:title="@string/menu_Logout" />
+            </group>
+        </menu>
+    </item>
+
 </menu>
