@@ -2,6 +2,7 @@ package com.example.insights;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -17,11 +18,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.insights.databases.UserDatabase;
+import com.example.insights.interfaces.UserDao;
+import com.example.insights.model.User;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class MainActivity extends AppCompatActivity {
     CheckBox show_hide_password;
-    EditText edtTextPassword;
+    EditText edtTextPassword , edtTextUserId;
     TextView txtViewFrgtPass,txtViewCreateAccount;
     Button btnLogin;
+    UserDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         show_hide_password = findViewById(R.id.show_hide_password);
         edtTextPassword = findViewById(R.id.edtTextPassword);
+        edtTextUserId = findViewById(R.id.edtTxtUserId);
         txtViewFrgtPass = findViewById(R.id.forgot_password);
         txtViewCreateAccount = findViewById(R.id.txtViewCreateAccount);
         btnLogin = findViewById(R.id.BtnLogin);
@@ -59,11 +69,34 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this,Reggister.class));
         });
 
+        db = Room.databaseBuilder(getApplicationContext(),UserDatabase.class,"User.db").build();
+        UserDao userDao = db.userDao();
         btnLogin.setOnClickListener((View view) ->{
 
-            //after validating usrid and pass from db
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() ->{
 
-            startActivity(new Intent(MainActivity.this,HomePage.class));
+                User user = userDao.findUserById(edtTextUserId.getText().toString());
+                runOnUiThread(()-> {
+                    if (user == null){
+                        Toast.makeText(MainActivity.this,"Account does not exist.Register to Login",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        if (user.getPassword().equals(edtTextPassword.getText().toString()) ) {
+                            runOnUiThread(() -> {
+                                startActivity(new Intent(MainActivity.this, HomePage.class));
+                            });
+                        } else {
+                            runOnUiThread(()-> {
+                                Toast.makeText(MainActivity.this, "Incorrect Password. Try Again", Toast.LENGTH_SHORT).show();
+                            });
+
+                        }
+                    }
+                });
+            });
+
+
         });
     }
 }

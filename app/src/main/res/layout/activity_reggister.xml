@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edtTxtEmail"
+        android:id="@+id/edtTxtUserId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -55,7 +55,7 @@
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtUserId" />
 
     <EditText
         android:id="@+id/edtTextPassword"
@@ -119,6 +119,7 @@
         android:layout_marginTop="50dp"
         android:clickable="true"
         android:gravity="center"
+        android:minHeight="48dp"
         android:padding="5dp"
         android:singleLine="true"
         android:text="@string/txtBacktoLogin"

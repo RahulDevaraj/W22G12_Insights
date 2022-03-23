@@ -19,7 +19,7 @@ public class ForgotPassword extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_password);
 
         btnSubmit = findViewById(R.id.btnSubmit);
-        edtTxtEmail = findViewById(R.id.edtTxtEmail);
+        edtTxtEmail = findViewById(R.id.edtTxtUserId);
 
         btnSubmit.setOnClickListener((View view)-> {
             if(!android.util.Patterns.EMAIL_ADDRESS.matcher(edtTxtEmail.getText().toString()).matches())
