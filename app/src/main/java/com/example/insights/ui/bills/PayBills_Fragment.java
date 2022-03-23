@@ -14,29 +14,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;;
 
-import com.example.insights.R;
-import com.example.insights.ui.bills.PayBillsViewModel;
 import com.example.insights.databinding.PayBillsFragmentBinding;
 
 public class PayBills_Fragment extends Fragment {
 
-    private PayBillsViewModel payBillsViewModel;
+
     private PayBillsFragmentBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        payBillsViewModel = new ViewModelProvider(this).get(PayBillsViewModel.class);
 
         binding = PayBillsFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textPayBills;
-        payBillsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        TextView textView = binding.textPayBills;
+        textView.setText("Pay Bills Fragment");
         return root;
     }
 
