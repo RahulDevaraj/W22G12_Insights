@@ -6,7 +6,9 @@ import androidx.room.Room;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -72,31 +74,43 @@ public class MainActivity extends AppCompatActivity {
         db = Room.databaseBuilder(getApplicationContext(),UserDatabase.class,"User.db").build();
         UserDao userDao = db.userDao();
         btnLogin.setOnClickListener((View view) ->{
+            if(edtTextUserId.getText().toString().isEmpty() || edtTextPassword.getText().toString().isEmpty())
+            {
+                Toast.makeText(this, "User Id and Passwords Fields cannot be empty", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                ExecutorService executorService = Executors.newSingleThreadExecutor();
+                executorService.execute(() ->{
 
-            ExecutorService executorService = Executors.newSingleThreadExecutor();
-            executorService.execute(() ->{
-
-                User user = userDao.findUserById(edtTextUserId.getText().toString());
-                runOnUiThread(()-> {
-                    if (user == null){
-                        Toast.makeText(MainActivity.this,"Account does not exist.Register to Login",Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        if (user.getPassword().equals(edtTextPassword.getText().toString()) ) {
-                            runOnUiThread(() -> {
-                                startActivity(new Intent(MainActivity.this, HomePage.class));
-                            });
-                        } else {
-                            runOnUiThread(()-> {
-                                Toast.makeText(MainActivity.this, "Incorrect Password. Try Again", Toast.LENGTH_SHORT).show();
-                            });
-
+                    User user = userDao.findUserById(edtTextUserId.getText().toString());
+                    runOnUiThread(()-> {
+                        if (user == null){
+                            Toast.makeText(MainActivity.this,"Account does not exist.Register to Login",Toast.LENGTH_SHORT).show();
                         }
-                    }
+                        else {
+                            if (user.getPassword().equals(edtTextPassword.getText().toString()) ) {
+                                runOnUiThread(() -> {
+                                    //if successfull put the details inside a shared preference
+                                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("USERID",user.getUserId());
+                                    editor.putString("USEREMAIL",user.getEmailId());
+                                    editor.commit();
+
+                                    //home activity called
+                                    startActivity(new Intent(MainActivity.this, HomePage.class));
+                                });
+                            } else {
+                                runOnUiThread(()-> {
+                                    Toast.makeText(MainActivity.this, "Incorrect Password. Try Again", Toast.LENGTH_SHORT).show();
+                                });
+
+                            }
+                        }
+                    });
                 });
-            });
-
-
+            }
         });
     }
 }
