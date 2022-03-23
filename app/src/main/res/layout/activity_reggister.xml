@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edtTextPassword" />
 
     <Button
-        android:id="@+id/BtnRegister"
+        android:id="@+id/BtnLogin"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -126,6 +126,6 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BtnRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/BtnLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,7 @@ public class Reggister extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reggister);
 
-        btnRegister = findViewById(R.id.BtnRegister);
+        btnRegister = findViewById(R.id.BtnLogin);
         txtViewLogin = findViewById(R.id.txtViewLogin);
         editTxtEmail = findViewById(R.id.edtTxtEmail);
         edtTextPassword = findViewById(R.id.edtTextPassword);
