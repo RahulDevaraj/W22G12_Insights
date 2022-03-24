@@ -59,7 +59,7 @@ public class ForgotPassword extends AppCompatActivity {
                             // check Generate password and Reset
                             String newPassword = generatePassword();
                             String subject = "Password Reset Mail";
-                            String message = "Please use the following password to login to the account : "+newPassword;
+                            String message = "Please use the following credentials to login to the account \n UserID : "+user.getUserId()+"\n Password : "+newPassword;
                             try{
                                 sendMail(user.getEmailId(),subject,message);
                                 executorService.execute(()->{
