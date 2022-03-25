@@ -30,6 +30,8 @@ public class AddExpense_Fragment extends Fragment {
 
         TextView textViewDescription = binding.txtDesc;
         EditText editTxtDescription = binding.editTxtDescription;
+        TextView textViewAmount = binding.txtAmount;
+        EditText editTxtAmount = binding.editTxtAmount;
         TextView textViewCategory = binding.txtCategory;
         Spinner spinnerCategoryTypes = binding.spinnerCategoryTypes;
         TextView textViewDate = binding.txtDate;
