@@ -31,4 +31,15 @@
     <string name="menu_Logout">Logout</string>
     <string name="menu_ViewExpense">View Expenses</string>
     <string name="menu_ShowExpense">View Expenses</string>
+    <string name="txtDescription">Description</string>
+    <string name="txtCatDesc">Category</string>
+    <string name="txtDateDesc">Date</string>
+    <string name="txtBtn">Add Expense</string>
+
+    <string-array name="spinnerCategoryTypes">
+        <item>Shopping</item>
+        <item>Travel</item>
+        <item>Personal Care</item>
+        <item>Pets</item>
+    </string-array>
 </resources>
