@@ -34,6 +34,32 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
+        android:id="@+id/txtAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/txtAmtDesc"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtDescription" />
+
+    <EditText
+        android:id="@+id/editTxtAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAmount"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
         android:id="@+id/txtCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +68,7 @@
         android:text="@string/txtCatDesc"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxtAmount" />
 
     <Spinner
         android:id="@+id/spinnerCategoryTypes"
@@ -68,16 +94,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCategoryTypes" />
 
-    <CalendarView
-        android:id="@+id/calendarViewDate"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="30dp"
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="30dp"
-        android:background="#FFFFFF"
-        android:dateTextAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:fadeScrollbars="false"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDate" />
@@ -86,10 +109,9 @@
         android:id="@+id/btnAddExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:text="@string/txtBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarViewDate" />
+        app:layout_constraintTop_toBottomOf="@+id/datePicker" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

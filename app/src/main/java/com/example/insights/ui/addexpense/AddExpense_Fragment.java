@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ public class AddExpense_Fragment extends Fragment {
         TextView textViewCategory = binding.txtCategory;
         Spinner spinnerCategoryTypes = binding.spinnerCategoryTypes;
         TextView textViewDate = binding.txtDate;
-        CalendarView calendarViewDate = binding.calendarViewDate;
+        DatePicker datePicker = binding.datePicker;
         Button btnAddExpense = binding.btnAddExpense;
 
         //float scalingFactor = 0.8f; // scale down to half the size view.

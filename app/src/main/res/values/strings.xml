@@ -35,6 +35,7 @@
     <string name="txtCatDesc">Category</string>
     <string name="txtDateDesc">Date</string>
     <string name="txtBtn">Add Expense</string>
+    <string name="txtAmtDesc">Amount</string>
 
     <string-array name="spinnerCategoryTypes">
         <item>Shopping</item>
