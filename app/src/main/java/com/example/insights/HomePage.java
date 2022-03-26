@@ -1,8 +1,11 @@
 package com.example.insights;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -38,6 +41,17 @@ public class HomePage extends AppCompatActivity {
         });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+        //adding header UserName & Email
+
+        View header=navigationView.getHeaderView(0);
+        TextView navUserName = (TextView) header.findViewById(R.id.txtViewUserName);
+        TextView navEmailAddress = (TextView) header.findViewById(R.id.txtViewEmail);
+
+        //Getting shared Pref
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        navUserName.setText(sharedPreferences.getString("USERID",null));
+        navEmailAddress.setText(sharedPreferences.getString("USEREMAIL",null));
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
