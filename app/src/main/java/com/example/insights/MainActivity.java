@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString("USERID",user.getUserId());
                                     editor.putString("USEREMAIL",user.getEmailId());
+                                    editor.putString("USERLIMIT",user.getAmtLimit().toString());
                                     editor.commit();
 
                                     //home activity called
