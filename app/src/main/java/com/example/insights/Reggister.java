@@ -23,7 +23,7 @@ public class Reggister extends AppCompatActivity {
 
     Button btnRegister;
     TextView txtViewLogin ;
-    EditText editTxtEmail, edtTextPassword,edtTextPasswordConfirm, edtTxtUser;
+    EditText editTxtEmail, edtTextPassword,edtTextPasswordConfirm, edtTxtUser,edtTextSetLimit;
     UserDatabase db;
     User user;
 
@@ -38,6 +38,7 @@ public class Reggister extends AppCompatActivity {
         edtTextPassword = findViewById(R.id.edtTextPassword);
         edtTextPasswordConfirm = findViewById(R.id.edtTextPasswordConfirm);
         edtTxtUser = findViewById(R.id.edtTxtUser);
+        edtTextSetLimit = findViewById(R.id.edtTextSetLimit);
 
         db = Room.databaseBuilder(getApplicationContext(),UserDatabase.class,"User.db").build();
         UserDao userDao = db.userDao();
@@ -49,6 +50,9 @@ public class Reggister extends AppCompatActivity {
             else if( !edtTextPassword.getText().toString().equals(edtTextPasswordConfirm.getText().toString())){
                 Toast.makeText(Reggister.this, "Entered Passwords do not match. Try again", Toast.LENGTH_SHORT).show();
             }
+            else if(edtTextSetLimit.getText().toString().isEmpty()){
+                Toast.makeText(Reggister.this, "Please enter the Monthly Spend Limit", Toast.LENGTH_SHORT).show();
+            }
             else{
                 ExecutorService executorService = Executors.newSingleThreadExecutor();
                 executorService.execute(() -> {
@@ -56,7 +60,7 @@ public class Reggister extends AppCompatActivity {
                         user = userDao.findUserByEmail(editTxtEmail.getText().toString());
 
                             if(user == null){
-                                user = new User(editTxtEmail.getText().toString(),edtTxtUser.getText().toString(),edtTextPassword.getText().toString(),0.00);
+                                user = new User(editTxtEmail.getText().toString(),edtTxtUser.getText().toString(),edtTextPassword.getText().toString(),Double.parseDouble(edtTextSetLimit.getText().toString()));
                                 userDao.InsertUser(user);
                                 Toast.makeText(this, "Account has been created", Toast.LENGTH_SHORT).show();
                                 runOnUiThread(()-> {

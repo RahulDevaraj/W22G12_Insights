@@ -36,6 +36,7 @@
     <string name="txtDateDesc">Date</string>
     <string name="txtBtn">Add Expense</string>
     <string name="txtAmtDesc">Amount</string>
+    <string name="txtSetLimit">Montly Spend Limit</string>
 
     <string-array name="spinnerCategoryTypes">
         <item>Shopping</item>
