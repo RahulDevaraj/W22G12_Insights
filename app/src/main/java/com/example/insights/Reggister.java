@@ -60,7 +60,7 @@ public class Reggister extends AppCompatActivity {
                         user = userDao.findUserByEmail(editTxtEmail.getText().toString());
 
                             if(user == null){
-                                user = new User(editTxtEmail.getText().toString(),edtTxtUser.getText().toString(),edtTextPassword.getText().toString(),Double.parseDouble(edtTxtUser.getText().toString()));
+                                user = new User(editTxtEmail.getText().toString(),edtTxtUser.getText().toString(),edtTextPassword.getText().toString(),Double.parseDouble(edtTextSetLimit.getText().toString()));
                                 userDao.InsertUser(user);
                                 Toast.makeText(this, "Account has been created", Toast.LENGTH_SHORT).show();
                                 runOnUiThread(()-> {
