@@ -23,9 +23,9 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        TextView textView = binding.textHome;
+        TextView textViewCurrentLimit = binding.textViewCurrentLimit;
 
-        textView.setText("Home Fragment");
+        textViewCurrentLimit.setText("Home Fragment");
 
         return root;
     }
