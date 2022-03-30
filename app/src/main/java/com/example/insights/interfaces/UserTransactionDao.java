@@ -17,4 +17,7 @@ public interface UserTransactionDao {
 
     @Query("SELECT SUM(amount)  as sum, category  FROM USERTRANSACTION WHERE (emailid = :emailId and txndate LIKE :date) GROUP BY category ")
     List<ChartHelper> getDataForChart(String emailId, String date);
+
+    @Query("SELECT SUM(amount) FROM USERTRANSACTION WHERE (emailid = :emailId and txndate LIKE :date)")
+    Double getMonthlySpending(String emailId, String date);
 }
