@@ -21,10 +21,13 @@ import com.example.insights.helpers.ChartHelper;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -97,6 +100,20 @@ public class HomeFragment extends Fragment {
                         textViewMessage.setVisibility(View.INVISIBLE);
                         setupPieChart("Monthly Expenses");
                         loadPieChartData(addPieData(chartData));
+
+                        pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+                            @Override
+                            public void onValueSelected(Entry e, Highlight h) {
+                                Log.d("TAG",""+e.getY());
+                                pieChart.setCenterTextSize(20f);
+                                pieChart.setCenterText(String.format("%s%.2f","$",e.getY()));
+                            }
+
+                            @Override
+                            public void onNothingSelected() {
+
+                            }
+                        });
                     }
 
 

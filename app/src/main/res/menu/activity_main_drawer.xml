@@ -19,6 +19,11 @@
             android:title="@string/menu_ViewExpense" />
 
         <item
+            android:id="@+id/nav_expsummary"
+            android:icon="@drawable/ic_baseline_analytics_24"
+            android:title="@string/menu_ExpenseSummary" />
+
+        <item
             android:id="@+id/nav_paybills"
             android:icon="@drawable/ic_baseline_done_24"
             android:title="@string/menu_PayBills" />
