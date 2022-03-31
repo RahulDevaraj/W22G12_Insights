@@ -26,12 +26,13 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
     @Override
     public ViewExpenseHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_recycler_view,parent,false);
+                .inflate(R.layout.layout_recycler_row,parent,false);
 
        ViewExpenseHolder viewExpenseHolder = new ViewExpenseHolder(view);
 
-       viewExpenseHolder.txtViewDescription = view.findViewById(R.id.txtViewItemDescription);
-       viewExpenseHolder.txtViewAmount = view.findViewById(R.id.txtViewAmount);
+       viewExpenseHolder.txtViewDescription = view.findViewById(R.id.textViewDescription);
+       viewExpenseHolder.txtViewAmount = view.findViewById(R.id.textViewAmount);
+       viewExpenseHolder.txtViewDate = view.findViewById(R.id.textViewDate);
 
        return viewExpenseHolder;
     }
@@ -41,6 +42,7 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
 
         holder.txtViewDescription.setText(AllTransactions.get(position).getDescription());
         holder.txtViewAmount.setText(AllTransactions.get(position).getAmount().toString());
+        holder.txtViewDate.setText(AllTransactions.get(position).getTxndate());
 
     }
 
@@ -50,7 +52,7 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
     }
 
     public class ViewExpenseHolder extends RecyclerView.ViewHolder{
-        TextView txtViewDescription,txtViewAmount;
+        TextView txtViewDescription,txtViewAmount,txtViewDate;
         ImageView imgViewEdit,imgViewDelete;
 
         public ViewExpenseHolder(@NonNull View itemView) {
