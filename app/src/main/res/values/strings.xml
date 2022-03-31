@@ -36,9 +36,10 @@
     <string name="txtDateDesc">Date</string>
     <string name="txtBtn">Add Expense</string>
     <string name="txtAmtDesc">Amount</string>
-    <string name="txtSetLimit">Montly Spend Limit</string>
+    <string name="txtSetLimit">Monthly Spend Limit</string>
     <string name="txtViewNoData">Input Data to View Visualised Data</string>
     <string name="menu_ExpenseSummary">Expense Summary</string>
+    <string name="errorMessageSearch">No Data to Visualise</string>
 
     <string-array name="spinnerCategoryTypes">
         <item>Shopping</item>
@@ -46,6 +47,5 @@
         <item>Personal Care</item>
         <item>Pets</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
