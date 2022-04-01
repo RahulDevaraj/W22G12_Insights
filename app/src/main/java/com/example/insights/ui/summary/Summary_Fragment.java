@@ -44,6 +44,7 @@ import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
 import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
@@ -79,6 +80,18 @@ public class Summary_Fragment extends Fragment {
                     .setPositiveButton(new DateMonthDialogListener() {
                         @Override
                         public void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel) {
+
+                            Calendar c = Calendar.getInstance();
+
+                            int currentMonth = c.get(Calendar.MONTH)+1;
+                            int currentYear = c.get(Calendar.YEAR);
+                            if((month>currentMonth && year == currentYear)||(year>currentYear))
+                            {
+                                getActivity().recreate();
+                                Toast.makeText(getContext(), "Please choose Valid Inputs", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
                             String dateRegex = month+"-%-"+year;
                             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
                             String emailId = sharedPreferences.getString("USEREMAIL",null);
@@ -136,7 +149,7 @@ public class Summary_Fragment extends Fragment {
                             });
 
 
-                        }
+                        }  }
                     })
                     .setNegativeButton(new OnCancelMonthDialogListener() {
                         @Override
