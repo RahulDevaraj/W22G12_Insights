@@ -55,7 +55,7 @@ public class ViewExpense_Fragment extends Fragment {
                 LinearLayoutManager lm = new LinearLayoutManager(getActivity());//,LinearLayoutManager.HORIZONTAL, false);
 
                 item_recycler_view.setLayoutManager(lm);
-                item_recycler_view.setAdapter(new ViewTransactionAdapter(AllTransactions));
+                item_recycler_view.setAdapter(new ViewTransactionAdapter(AllTransactions,getActivity()));
             }
             catch(Exception e){
                 e.printStackTrace();

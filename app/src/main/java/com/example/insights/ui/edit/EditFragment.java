@@ -56,7 +56,7 @@ public class EditFragment extends Fragment {
         Spinner spinnerCategoryTypes = binding.spinnerCategoryTypes;
         DatePicker datePicker = binding.datePicker;
         Button btnSave = binding.btnSave;
-        Button btnCancel = binding.btnSave;
+        Button btnCancel = binding.btnCancel;
 
         editTxtDescription.setText(""+userTransaction.getDescription());
         editTxtAmount.setText(""+userTransaction.getAmount());
@@ -66,13 +66,13 @@ public class EditFragment extends Fragment {
             case "Shopping":
                 spinnerPosition = 0;
                 break;
-            case"Pets":
+            case"Travel":
                 spinnerPosition = 1;
                 break;
-            case"Travel":
+            case"Personal Care":
                 spinnerPosition = 2;
                 break;
-            case"Personal":
+            case"Pets":
                 spinnerPosition = 3;
                 break;
         }
@@ -85,7 +85,7 @@ public class EditFragment extends Fragment {
         btnSave.setOnClickListener((View view)-> {
             if(editTxtDescription.getText().toString().isEmpty() || editTxtAmount.getText().toString().isEmpty())
             {
-                Toast.makeText(getActivity(), "Please fill out empty Fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Please fill out empty Fields", Toast.LENGTH_SHORT).show();
             }
             else
             {
@@ -97,7 +97,7 @@ public class EditFragment extends Fragment {
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(getActivity(), "Please Enter Valid Data in Amount", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please Enter Valid Data in Amount", Toast.LENGTH_SHORT).show();
                 }
                 if(isValid)
                 {
@@ -107,6 +107,7 @@ public class EditFragment extends Fragment {
                     int year =  datePicker.getYear();
 
                     String newDate = (month)+"-"+day+"-"+year;
+                    Toast.makeText(getContext(), "Date "+newDate, Toast.LENGTH_SHORT).show();
 
                     UserDatabase database = Room.databaseBuilder(getContext(),UserDatabase.class,"User.db").build();
                     ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -117,7 +118,7 @@ public class EditFragment extends Fragment {
                             database.userTransactionDao().updateExpense(editTxtDescription.getText().toString(),amount,category,newDate,userTransaction.getTransactionId(),userTransaction.getEmailid());
 
                             getActivity().runOnUiThread(()-> {
-                                Toast.makeText(getActivity(), "Entry Successfully Added", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Entry Successfully Added", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getActivity(), HomePage.class));
                             });
 
@@ -139,10 +140,13 @@ public class EditFragment extends Fragment {
         btnCancel.setOnClickListener((View view)-> {
             try{
 
-                ViewExpense_Fragment viewExpense_fragment = new ViewExpense_Fragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.editexp, viewExpense_fragment).addToBackStack(null).commit();
+//                ViewExpense_Fragment viewExpense_fragment = new ViewExpense_Fragment();
+//                FragmentManager fragmentManager = getFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.editexp, viewExpense_fragment).commit();
+                startActivity(new Intent(getContext(),ViewExpense_Fragment.class));
+
+
 
 
             }

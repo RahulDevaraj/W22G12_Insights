@@ -52,4 +52,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     annotationProcessor 'androidx.room:room-compiler:2.2.6'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0' //Add
+    implementation 'com.google.code.gson:gson:2.8.8' //json
 }

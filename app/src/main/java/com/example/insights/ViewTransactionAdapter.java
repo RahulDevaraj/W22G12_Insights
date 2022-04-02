@@ -1,5 +1,6 @@
 package com.example.insights;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,9 +42,11 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
     UserDatabase db;
     int del;
     private Context context;
+    Activity activity;
 
-    public ViewTransactionAdapter(List<UserTransaction> allTransactions) {
+    public ViewTransactionAdapter(List<UserTransaction> allTransactions, Activity activity) {
         AllTransactions = allTransactions;
+        this.activity = activity;
     }
 
 
@@ -103,13 +106,24 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
                            UserTransactionDao userDao = db.userTransactionDao();
                            ExecutorService executorService = Executors.newSingleThreadExecutor();
                            executorService.execute(() ->{
+                            try{
+                                del =   db.userTransactionDao().deleteExpense(AllTransactions.get(position).getTransactionId(),
+                                        AllTransactions.get(position).getEmailid());
+                                activity.runOnUiThread(()->{
+                                    notifyDataSetChanged();
+                                    activity.recreate();
+                                    dialog.cancel();
+                                    Toast.makeText(view2.getContext(), "Record Deleted successfully", Toast.LENGTH_SHORT).show();
+                                });
 
-                            del =   db.userTransactionDao().deleteExpense(AllTransactions.get(position).getTransactionId(),
-                                       AllTransactions.get(position).getEmailid());
+                            }
+                            catch (Exception e)
+                            {
+                                e.printStackTrace();
+                            }
+
                            });
-                           notifyDataSetChanged();
-                           dialog.cancel();
-                           Toast.makeText(view2.getContext(), "Record Deleted successfully", Toast.LENGTH_SHORT).show();
+
                            break;
 
                        case DialogInterface.BUTTON_NEGATIVE:
@@ -147,7 +161,7 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
             case"Travel":
                 holder.imgCategory.setImageResource(R.drawable.ic_baseline_card_travel_24);
                 break;
-            case"Personal":
+            case"Personal Care":
                 holder.imgCategory.setImageResource(R.drawable.ic_baseline_person_24);
                 break;
         }
