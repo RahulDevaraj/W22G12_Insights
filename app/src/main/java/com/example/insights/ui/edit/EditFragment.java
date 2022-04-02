@@ -107,7 +107,6 @@ public class EditFragment extends Fragment {
                     int year =  datePicker.getYear();
 
                     String newDate = (month)+"-"+day+"-"+year;
-                    Toast.makeText(getContext(), "Date "+newDate, Toast.LENGTH_SHORT).show();
 
                     UserDatabase database = Room.databaseBuilder(getContext(),UserDatabase.class,"User.db").build();
                     ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -120,6 +119,7 @@ public class EditFragment extends Fragment {
                             getActivity().runOnUiThread(()-> {
                                 Toast.makeText(getContext(), "Entry Successfully Added", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getActivity(), HomePage.class));
+
                             });
 
 
@@ -140,11 +140,12 @@ public class EditFragment extends Fragment {
         btnCancel.setOnClickListener((View view)-> {
             try{
 
-//                ViewExpense_Fragment viewExpense_fragment = new ViewExpense_Fragment();
-//                FragmentManager fragmentManager = getFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.editexp, viewExpense_fragment).commit();
-                startActivity(new Intent(getContext(),ViewExpense_Fragment.class));
+                ViewExpense_Fragment viewExpense_fragment = new ViewExpense_Fragment();
+                btnCancel.setEnabled(false);
+                btnSave.setEnabled(false);
+
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.editexp, viewExpense_fragment).commit();
 
 
 

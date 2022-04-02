@@ -35,6 +35,7 @@ public class ViewExpense_Fragment extends Fragment {
         binding = ViewExpenseFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
         Calendar c = Calendar.getInstance();
         int day = c.get(Calendar.DAY_OF_MONTH);
         int month = c.get(Calendar.MONTH)+1;
@@ -51,11 +52,15 @@ public class ViewExpense_Fragment extends Fragment {
                 db = Room.databaseBuilder(getContext(), UserDatabase.class,"User.db").build();
                 List<UserTransaction> AllTransactions = db.userTransactionDao().getMonthlyExpenses(emailId,dateRegex);
 
-                RecyclerView item_recycler_view = binding.recyclerViewExpenses;
-                LinearLayoutManager lm = new LinearLayoutManager(getActivity());//,LinearLayoutManager.HORIZONTAL, false);
+                getActivity().runOnUiThread(()->{
+                    RecyclerView item_recycler_view = binding.recyclerViewExpenses;
+                    LinearLayoutManager lm = new LinearLayoutManager(getActivity());//,LinearLayoutManager.HORIZONTAL, false);
 
-                item_recycler_view.setLayoutManager(lm);
-                item_recycler_view.setAdapter(new ViewTransactionAdapter(AllTransactions,getActivity()));
+                    item_recycler_view.setLayoutManager(lm);
+                    item_recycler_view.setAdapter(new ViewTransactionAdapter(AllTransactions,getActivity()));
+                });
+
+
             }
             catch(Exception e){
                 e.printStackTrace();
