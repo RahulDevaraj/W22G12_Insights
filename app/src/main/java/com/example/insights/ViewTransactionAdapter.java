@@ -107,7 +107,7 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
                             del =   db.userTransactionDao().deleteExpense(AllTransactions.get(position).getTransactionId(),
                                        AllTransactions.get(position).getEmailid());
                            });
-                           notifyDataSetChanged();
+                            // notify data set changed!!!
                            dialog.cancel();
                            Toast.makeText(view2.getContext(), "Record Deleted successfully", Toast.LENGTH_SHORT).show();
                            break;

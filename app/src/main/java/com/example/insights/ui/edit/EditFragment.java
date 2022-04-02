@@ -117,10 +117,9 @@ public class EditFragment extends Fragment {
                             database.userTransactionDao().updateExpense(editTxtDescription.getText().toString(),amount,category,newDate,userTransaction.getTransactionId(),userTransaction.getEmailid());
 
                             getActivity().runOnUiThread(()-> {
-                                Toast.makeText(getActivity(), "Entry Successfully Added", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Expense Modified Sucessfully", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getActivity(), HomePage.class));
                             });
-
 
                         }
 
@@ -138,7 +137,7 @@ public class EditFragment extends Fragment {
 
         btnCancel.setOnClickListener((View view)-> {
             try{
-
+                // go back to view expense.
                 ViewExpense_Fragment viewExpense_fragment = new ViewExpense_Fragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
