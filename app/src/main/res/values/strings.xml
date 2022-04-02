@@ -38,6 +38,8 @@
     <string name="txtAmtDesc">Amount</string>
     <string name="txtSetLimit">Montly Spend Limit</string>
     <string name="txtViewNoData">Input Data to View Visualised Data</string>
+    <string name="txtSave">Save</string>
+    <string name="txtCancel">Cancel</string>
 
     <string-array name="spinnerCategoryTypes">
         <item>Shopping</item>
