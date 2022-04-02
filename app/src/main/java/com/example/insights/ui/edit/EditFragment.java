@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +21,7 @@ import com.google.gson.Gson;
 
 public class EditFragment extends Fragment {
 
-    TextView test ;
+    EditText test ;
 
     private EditFragmentBinding binding;
 
@@ -33,7 +34,7 @@ public class EditFragment extends Fragment {
         Gson gson = new Gson();
         String json = sharedPreferences.getString("USERTRANSACTION", "");
         UserTransaction userTransaction = gson.fromJson(json, UserTransaction.class);
-        test = binding.txtView;
+        test = binding.editTxtDescription;
         test.setText(""+userTransaction.getDescription());
 
         return root;

@@ -73,7 +73,10 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
            prefsEditor.putString("USERTRANSACTION", json);
            prefsEditor.commit();
            try{
+                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                EditFragment editFragment = new EditFragment();
 
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.viewexp,editFragment).commit();
            }
            catch(Exception e){
                e.printStackTrace();
