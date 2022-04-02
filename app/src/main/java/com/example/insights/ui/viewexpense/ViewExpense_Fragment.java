@@ -52,7 +52,7 @@ public class ViewExpense_Fragment extends Fragment {
                 List<UserTransaction> AllTransactions = db.userTransactionDao().getMonthlyExpenses(emailId,dateRegex);
 
                 RecyclerView item_recycler_view = binding.recyclerViewExpenses;
-                LinearLayoutManager lm = new LinearLayoutManager(requireContext());//,LinearLayoutManager.HORIZONTAL, false);
+                LinearLayoutManager lm = new LinearLayoutManager(getActivity());//,LinearLayoutManager.HORIZONTAL, false);
 
                 item_recycler_view.setLayoutManager(lm);
                 item_recycler_view.setAdapter(new ViewTransactionAdapter(AllTransactions));

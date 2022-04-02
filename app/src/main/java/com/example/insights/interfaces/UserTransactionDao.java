@@ -25,5 +25,5 @@ public interface UserTransactionDao {
     Double getMonthlySpending(String emailId, String date);
 
     @Query("DELETE FROM USERTRANSACTION WHERE (transactionId =:transactionid and emailid=:emailid)")
-    void deleteExpense(int transactionid , String emailid);
+    int deleteExpense(int transactionid , String emailid);
 }
