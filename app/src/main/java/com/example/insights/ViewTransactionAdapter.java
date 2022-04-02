@@ -99,7 +99,7 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
                            //Yes button clicked
                            int position = viewExpenseHolder.getAdapterPosition();
 
-                           db = Room.databaseBuilder(view2.getContext(),UserDatabase.class,"USERTRANSACTION.db").build();
+                           db = Room.databaseBuilder(view2.getContext(),UserDatabase.class,"User.db").build();
                            UserTransactionDao userDao = db.userTransactionDao();
                            ExecutorService executorService = Executors.newSingleThreadExecutor();
                            executorService.execute(() ->{

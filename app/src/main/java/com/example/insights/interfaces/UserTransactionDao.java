@@ -26,4 +26,7 @@ public interface UserTransactionDao {
 
     @Query("DELETE FROM USERTRANSACTION WHERE (transactionId =:transactionid and emailid=:emailid)")
     int deleteExpense(int transactionid , String emailid);
+
+    @Query("UPDATE USERTRANSACTION SET description =:description, amount=:amount, category=:category, txndate=:txndate where (transactionId =:transactionid and emailid=:emailid)")
+    void updateExpense(String description,double amount,String category,String txndate,int transactionid,String emailid);
 }
