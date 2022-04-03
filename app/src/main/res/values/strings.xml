@@ -36,10 +36,12 @@
     <string name="txtDateDesc">Date</string>
     <string name="txtBtn">Add Expense</string>
     <string name="txtAmtDesc">Amount</string>
-    <string name="txtSetLimit">Monthly Spend Limit</string>
+    <string name="txtSetLimit">Montly Spend Limit</string>
     <string name="txtViewNoData">Input Data to View Visualised Data</string>
     <string name="menu_ExpenseSummary">Expense Summary</string>
     <string name="errorMessageSearch">No Data to Visualise</string>
+    <string name="txtSave">Save</string>
+    <string name="txtCancel">Cancel</string>
 
     <string-array name="spinnerCategoryTypes">
         <item>Shopping</item>
