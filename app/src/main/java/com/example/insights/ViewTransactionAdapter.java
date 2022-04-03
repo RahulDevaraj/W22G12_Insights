@@ -147,41 +147,31 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
     public void onBindViewHolder(@NonNull ViewExpenseHolder holder, int position) {
 
 
-        if (position == 0 ){
-            holder.txtViewDescription.setText("Description");
-            holder.txtViewAmount.setText("Amount");
-
-        }
-        else{
-            holder.txtViewDescription.setText(AllTransactions.get(position-1).getDescription());
-            holder.txtViewAmount.setText(AllTransactions.get(position-1).getAmount().toString());
+        holder.txtViewDescription.setText(AllTransactions.get(position).getDescription());
+        holder.txtViewAmount.setText(AllTransactions.get(position).getAmount().toString());
 
 
-
-            switch (AllTransactions.get(position-1).getCategory()){
-                case "Shopping":
-                    holder.imgCategory.setImageResource(R.drawable.ic_baseline_shopping_cart_24);
-                    break;
-                case"Pets":
-                    holder.imgCategory.setImageResource(R.drawable.ic_baseline_pets_24);
-                    break;
-                case"Travel":
-                    holder.imgCategory.setImageResource(R.drawable.ic_baseline_card_travel_24);
-                    break;
-                case"Personal Care":
-                    holder.imgCategory.setImageResource(R.drawable.ic_baseline_person_24);
-                    break;
-            }
+        switch (AllTransactions.get(position).getCategory()) {
+            case "Shopping":
+                holder.imgCategory.setImageResource(R.drawable.ic_baseline_shopping_cart_24);
+                break;
+            case "Pets":
+                holder.imgCategory.setImageResource(R.drawable.ic_baseline_pets_24);
+                break;
+            case "Travel":
+                holder.imgCategory.setImageResource(R.drawable.ic_baseline_card_travel_24);
+                break;
+            case "Personal Care":
+                holder.imgCategory.setImageResource(R.drawable.ic_baseline_person_24);
+                break;
 
 
         }
-
-
     }
 
     @Override
     public int getItemCount() {
-        return (AllTransactions.size()+1);
+        return (AllTransactions.size());
     }
 
     public class ViewExpenseHolder extends RecyclerView.ViewHolder{
