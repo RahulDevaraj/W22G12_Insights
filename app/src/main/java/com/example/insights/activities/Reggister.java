@@ -1,4 +1,4 @@
-package com.example.insights;
+package com.example.insights.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.insights.R;
 import com.example.insights.databases.UserDatabase;
 import com.example.insights.interfaces.UserDao;
 import com.example.insights.model.User;

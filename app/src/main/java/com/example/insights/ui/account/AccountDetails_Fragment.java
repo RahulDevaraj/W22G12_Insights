@@ -14,15 +14,10 @@ import androidx.biometric.BiometricPrompt;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 
-import com.example.insights.HomePage;
-import com.example.insights.R;
+import com.example.insights.activities.HomePage;
 import com.example.insights.databinding.AccountDetailsFragmentBinding;
-import com.example.insights.ui.home.HomeFragment;
 
-import java.util.Objects;
 import java.util.concurrent.Executor;
 
 
