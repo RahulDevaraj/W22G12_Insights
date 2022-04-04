@@ -1,10 +1,14 @@
 package com.example.insights.ui.account;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,14 +20,19 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
+import androidx.room.Room;
 
 import com.example.insights.HomePage;
 import com.example.insights.R;
+import com.example.insights.databases.UserDatabase;
 import com.example.insights.databinding.AccountDetailsFragmentBinding;
+import com.example.insights.model.User;
 import com.example.insights.ui.home.HomeFragment;
 
 import java.util.Objects;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class AccountDetails_Fragment extends Fragment {
@@ -57,8 +66,85 @@ public class AccountDetails_Fragment extends Fragment {
                 //If fingerprint is OK
                 //Write Rest of the code inside
 
-                        TextView textView = binding.textAccountDetails;
-                        textView.setText("Account Details Fragment");
+                UserDatabase database = Room.databaseBuilder(getContext(),UserDatabase.class,"User.db").build();
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                String emailId = sharedPreferences.getString("USEREMAIL",null);
+
+                ExecutorService executorService = Executors.newSingleThreadExecutor();
+                executorService.execute(()-> {
+                    User user = database.userDao().findUserByEmail(emailId);
+
+                    getActivity().runOnUiThread(()->{
+                        TextView textViewEmail = binding.edtTxtUserIdView;
+                        TextView textViewUserName = binding.edtTxtUserNameView;
+                        TextView editTextPasswordChange = binding.edtTextPasswordChange;
+                        TextView editTextPasswordChangeConfirm = binding.edtTextPasswordChangeConfirm;
+                        TextView edtTextSetLimitChange = binding.edtTextSetLimitChange;
+                        Button BtnSaveSettings = binding.BtnSaveSettings;
+
+                        textViewEmail.setText(user.getEmailId());
+                        textViewUserName.setText(user.getUserId());
+                        editTextPasswordChange.setText(user.getPassword());
+                        editTextPasswordChangeConfirm.setText(user.getPassword());
+                        edtTextSetLimitChange.setText(user.getAmtLimit().toString());
+
+                        BtnSaveSettings.setOnClickListener((View view)-> {
+                            if(editTextPasswordChange.getText().toString().isEmpty() || editTextPasswordChangeConfirm.getText().toString().isEmpty()||
+                            edtTextSetLimitChange.getText().toString().isEmpty())
+                                Toast.makeText(getContext(), "Fields Cannot be Empty", Toast.LENGTH_SHORT).show();
+                            else if(!editTextPasswordChange.getText().toString().equals(editTextPasswordChangeConfirm.getText().toString()))
+                                    Toast.makeText(getContext(), "Passwords Mismatch", Toast.LENGTH_SHORT).show();
+                                else{
+                                    double amtLimit=0.0;
+                                    boolean isValid = true;
+                                    try {
+                                        amtLimit = Double.parseDouble(edtTextSetLimitChange.getText().toString());
+                                    }
+                                    catch (Exception e){
+                                        isValid = false;
+                                        Toast.makeText(getContext(), "Invalid Data in Limit Field", Toast.LENGTH_SHORT).show();
+                                    }
+                                    if(isValid)
+                                    {
+                                        ExecutorService executorService1 = Executors.newSingleThreadExecutor();
+                                        executorService1.execute(()->{
+                                            try{
+                                                database.userDao().changeAccountDetails(editTextPasswordChange.getText().toString(),
+                                                        Double.parseDouble(edtTextSetLimitChange.getText().toString()),
+                                                        emailId);
+                                                Log.d("TAG","HEREEEEE");
+
+                                                getActivity().runOnUiThread(()->{
+                                                    Toast.makeText(getContext(), "Account Details Changed Successfully", Toast.LENGTH_SHORT).show();
+
+                                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                                    editor.putString("USERLIMIT",edtTextSetLimitChange.getText().toString());
+                                                    editor.commit();
+                                                    startActivity(new Intent(getActivity(), HomePage.class));
+                                                });
+
+                                            }
+                                            catch (Exception e){
+                                                Toast.makeText(getContext(), "Error in Account Settings Changing", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+
+                                    }
+
+                                }
+
+
+                        });
+
+
+
+
+                    });
+
+
+                });
             }
 
             @Override
