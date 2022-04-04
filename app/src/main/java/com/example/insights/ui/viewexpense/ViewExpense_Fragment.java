@@ -6,7 +6,6 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import com.example.insights.ViewTransactionAdapter;
+import com.example.insights.adapters.ViewTransactionAdapter;
 import com.example.insights.databases.UserDatabase;
 import com.example.insights.databinding.ViewExpenseFragmentBinding;
 import com.example.insights.model.UserTransaction;

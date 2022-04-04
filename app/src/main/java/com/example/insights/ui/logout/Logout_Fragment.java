@@ -15,8 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.example.insights.HomePage;
-import com.example.insights.MainActivity;
+import com.example.insights.activities.HomePage;
+import com.example.insights.activities.MainActivity;
 import com.example.insights.databinding.LogoutFragmentBinding;
 
 public class Logout_Fragment extends Fragment {

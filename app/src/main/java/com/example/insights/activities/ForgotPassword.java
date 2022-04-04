@@ -1,17 +1,16 @@
-package com.example.insights;
+package com.example.insights.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Database;
 import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.insights.R;
 import com.example.insights.databases.UserDatabase;
 import com.example.insights.helpers.MailHelper;
 import com.example.insights.interfaces.UserDao;
