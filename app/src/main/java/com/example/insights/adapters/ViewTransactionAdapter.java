@@ -23,6 +23,7 @@ import com.example.insights.databases.UserDatabase;
 import com.example.insights.interfaces.UserTransactionDao;
 import com.example.insights.model.UserTransaction;
 import com.example.insights.ui.edit.EditFragment;
+import com.example.insights.ui.viewexpense.ViewExpense_Fragment;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -122,7 +123,16 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
                                                     AllTransactions.get(position).getEmailid());
                                             activity.runOnUiThread(()->{
                                                 notifyDataSetChanged();
-                                                activity.recreate();
+                                                try{
+                                                    AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                                                    ViewExpense_Fragment viewFragment = new ViewExpense_Fragment();
+
+                                                    appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.editexp,viewFragment).commit();
+                                                }
+                                                catch(Exception e){
+                                                    e.printStackTrace();
+                                                }
+                                                //activity.recreate();
                                                 dialog.cancel();
                                                 Toast.makeText(view2.getContext(), "Record Deleted successfully", Toast.LENGTH_SHORT).show();
                                             });
