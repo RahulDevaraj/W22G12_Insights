@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="#DBF4AC">
+    android:background="#009688">
 
     <TextView
         android:id="@+id/textViewDescriptionHeading"
@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:text="@string/descriptionHeading"
-        android:textSize="10sp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,6 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:text="@string/amountHeader"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewDescriptionHeading"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +35,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:text="@string/imageHeader"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textViewHeaderAmount"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,6 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:text="@string/editHeader"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewImageHeader"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,6 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:text="@string/deleteHeader"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewEditHeader"
         app:layout_constraintTop_toTopOf="parent" />
