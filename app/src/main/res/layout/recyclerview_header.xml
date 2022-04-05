@@ -21,7 +21,7 @@
         android:id="@+id/textViewHeaderAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="55dp"
         android:text="@string/amountHeader"
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -33,11 +33,11 @@
         android:id="@+id/textViewImageHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="30dp"
         android:text="@string/imageHeader"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewHeaderAmount"
         app:layout_constraintTop_toTopOf="parent" />
 
