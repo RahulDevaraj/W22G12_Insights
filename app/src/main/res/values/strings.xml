@@ -43,6 +43,8 @@
     <string name="txtSave">Save</string>
     <string name="txtCancel">Cancel</string>
     <string name="txtAccountSettings">Account Settings</string>
+    <string name="action_AboutUs">About Us</string>
+    <string name="StringVersion">V 1.0.0</string>
     <string name="descriptionHeading">Title</string>
     <string name="amountHeader">Amount</string>
     <string name="imageHeader">Category</string>
