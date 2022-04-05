@@ -127,7 +127,7 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
                                                     AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
                                                     ViewExpense_Fragment viewFragment = new ViewExpense_Fragment();
 
-                                                    appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.editexp,viewFragment).commit();
+                                                    appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.viewexp,viewFragment).commit();
                                                 }
                                                 catch(Exception e){
                                                     e.printStackTrace();
