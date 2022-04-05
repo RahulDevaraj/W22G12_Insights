@@ -45,6 +45,11 @@
     <string name="txtAccountSettings">Account Settings</string>
     <string name="action_AboutUs">About Us</string>
     <string name="StringVersion">V 1.0.0</string>
+    <string name="descriptionHeading">Title</string>
+    <string name="amountHeader">Amount</string>
+    <string name="imageHeader">Category</string>
+    <string name="editHeader">Edit</string>
+    <string name="deleteHeader">Delete</string>
 
     <string-array name="spinnerCategoryTypes">
         <item>Shopping</item>

@@ -29,8 +29,7 @@ public class Logout_Fragment extends Fragment {
         binding = LogoutFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        TextView textView = binding.textLogout;
-        textView.setText("Logout Fragment");
+
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
