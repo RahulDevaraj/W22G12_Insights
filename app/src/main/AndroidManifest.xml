@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Insights">
         <activity
+            android:name=".activities.AboutUs"
+            android:exported="false" />
+        <activity
             android:name=".activities.HomePage"
             android:exported="false"
             android:label="@string/title_activity_home_page"
