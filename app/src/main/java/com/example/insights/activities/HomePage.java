@@ -1,8 +1,10 @@
 package com.example.insights.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
@@ -73,6 +75,14 @@ public class HomePage extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home_page);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId()==R.id.action_AboutUs){
+            startActivity(new Intent(HomePage.this,AboutUs.class));
+        }
+
+        return (super.onOptionsItemSelected(item));
     }
 
 }
