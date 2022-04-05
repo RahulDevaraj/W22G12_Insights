@@ -30,6 +30,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactionAdapter.ViewExpenseHolder>{
+    private static final int HEADER = 0;
+    private static final int ITEM = 1;
 
     List<UserTransaction> AllTransactions;
     UserDatabase db;
@@ -41,130 +43,156 @@ public class ViewTransactionAdapter extends RecyclerView.Adapter <ViewTransactio
         AllTransactions = allTransactions;
         this.activity = activity;
     }
+    @Override
+    public int getItemViewType(int position) {
+        return position == 0 ? HEADER : ITEM;
+    }
 
 
     @NonNull
     @Override
     public ViewExpenseHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_recycler_row,parent,false);
 
-       ViewExpenseHolder viewExpenseHolder = new ViewExpenseHolder(view);
+        switch (viewType){
+            case HEADER:{
+                View v;
+                LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+                v = layoutInflater.inflate(R.layout.recyclerview_header, parent, false);
+                ViewExpenseHolder viewExpenseHolder = new ViewExpenseHolder(v);
 
-       viewExpenseHolder.txtViewDescription = view.findViewById(R.id.textViewDescription);
-       viewExpenseHolder.txtViewAmount = view.findViewById(R.id.textViewAmount );
-       viewExpenseHolder.imgCategory = view.findViewById(R.id.imgCategoryRow);
-       viewExpenseHolder.imgViewDelete = view.findViewById(R.id.imageViewDeleteRow);
-       viewExpenseHolder.imgViewEdit = view.findViewById(R.id.imageViewEditRow);
+                return  viewExpenseHolder;
+            }
 
+            case  ITEM:{
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.layout_recycler_row,parent,false);
 
-       viewExpenseHolder.imgViewEdit.setOnClickListener((View view1)-> {
-           int position = viewExpenseHolder.getAdapterPosition();
+                ViewExpenseHolder viewExpenseHolder = new ViewExpenseHolder(view);
 
-           SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view1.getContext());
-           UserTransaction userTransaction = AllTransactions.get(position);
-           SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
-           Gson gson = new Gson();
-           String json = gson.toJson(userTransaction);
-           prefsEditor.putString("USERTRANSACTION", json);
-           prefsEditor.commit();
-           try{
-                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                EditFragment editFragment = new EditFragment();
-
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.viewexp,editFragment).commit();
-           }
-           catch(Exception e){
-               e.printStackTrace();
-           }
+                viewExpenseHolder.txtViewDescription = view.findViewById(R.id.textViewDescription);
+                viewExpenseHolder.txtViewAmount = view.findViewById(R.id.textViewAmount );
+                viewExpenseHolder.imgCategory = view.findViewById(R.id.imgCategoryRow);
+                viewExpenseHolder.imgViewDelete = view.findViewById(R.id.imageViewDeleteRow);
+                viewExpenseHolder.imgViewEdit = view.findViewById(R.id.imageViewEditRow);
 
 
-           //Toast.makeText(view1.getContext(), "Record Edited successfully", Toast.LENGTH_SHORT).show();
+                viewExpenseHolder.imgViewEdit.setOnClickListener((View view1)-> {
+                    int position = viewExpenseHolder.getAdapterPosition()-1;
 
-       });
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view1.getContext());
+                    UserTransaction userTransaction = AllTransactions.get(position);
+                    SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(userTransaction);
+                    prefsEditor.putString("USERTRANSACTION", json);
+                    prefsEditor.commit();
+                    try{
+                        AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                        EditFragment editFragment = new EditFragment();
 
-       viewExpenseHolder.imgViewDelete.setOnClickListener((View view2)-> {
+                        appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.viewexp,editFragment).commit();
+                    }
+                    catch(Exception e){
+                        e.printStackTrace();
+                    }
+
+
+                    //Toast.makeText(view1.getContext(), "Record Edited successfully", Toast.LENGTH_SHORT).show();
+
+                });
+
+                viewExpenseHolder.imgViewDelete.setOnClickListener((View view2)-> {
 
 
 
-           DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-               @Override
-               public void onClick(DialogInterface dialog, int which) {
-                   switch (which){
-                       case DialogInterface.BUTTON_POSITIVE:
-                           //Yes button clicked
-                           int position = viewExpenseHolder.getAdapterPosition();
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    //Yes button clicked
+                                    int position = viewExpenseHolder.getAdapterPosition()-1;
 
-                           db = Room.databaseBuilder(view2.getContext(),UserDatabase.class,"User.db").build();
-                           UserTransactionDao userDao = db.userTransactionDao();
-                           ExecutorService executorService = Executors.newSingleThreadExecutor();
-                           executorService.execute(() ->{
-                            try{
-                                del =   db.userTransactionDao().deleteExpense(AllTransactions.get(position).getTransactionId(),
-                                        AllTransactions.get(position).getEmailid());
-                                activity.runOnUiThread(()->{
-                                    notifyDataSetChanged();
-                                    activity.recreate();
+                                    db = Room.databaseBuilder(view2.getContext(),UserDatabase.class,"User.db").build();
+                                    UserTransactionDao userDao = db.userTransactionDao();
+                                    ExecutorService executorService = Executors.newSingleThreadExecutor();
+                                    executorService.execute(() ->{
+                                        try{
+                                            del =   db.userTransactionDao().deleteExpense(AllTransactions.get(position).getTransactionId(),
+                                                    AllTransactions.get(position).getEmailid());
+                                            activity.runOnUiThread(()->{
+                                                notifyDataSetChanged();
+                                                activity.recreate();
+                                                dialog.cancel();
+                                                Toast.makeText(view2.getContext(), "Record Deleted successfully", Toast.LENGTH_SHORT).show();
+                                            });
+
+                                        }
+                                        catch (Exception e)
+                                        {
+                                            e.printStackTrace();
+                                        }
+
+                                    });
+
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
                                     dialog.cancel();
-                                    Toast.makeText(view2.getContext(), "Record Deleted successfully", Toast.LENGTH_SHORT).show();
-                                });
-
+                                    break;
                             }
-                            catch (Exception e)
-                            {
-                                e.printStackTrace();
-                            }
+                        }
+                    };
 
-                           });
-
-                           break;
-
-                       case DialogInterface.BUTTON_NEGATIVE:
-                           dialog.cancel();
-                           break;
-                   }
-               }
-           };
-
-           AlertDialog.Builder builder = new AlertDialog.Builder(view2.getContext());
-           builder.setMessage("Delete Expense?").setPositiveButton("Yes", dialogClickListener)
-                   .setNegativeButton("No", dialogClickListener).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view2.getContext());
+                    builder.setMessage("Delete Expense?").setPositiveButton("Yes", dialogClickListener)
+                            .setNegativeButton("No", dialogClickListener).show();
 
 
-       });
+                });
 
-       return viewExpenseHolder;
+                return viewExpenseHolder;
+
+            }
+        }
+
+
+return null;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewExpenseHolder holder, int position) {
 
-
-        holder.txtViewDescription.setText(AllTransactions.get(position).getDescription());
-        holder.txtViewAmount.setText(AllTransactions.get(position).getAmount().toString());
-
-
-        switch (AllTransactions.get(position).getCategory()) {
-            case "Shopping":
-                holder.imgCategory.setImageResource(R.drawable.ic_baseline_shopping_cart_24);
-                break;
-            case "Pets":
-                holder.imgCategory.setImageResource(R.drawable.ic_baseline_pets_24);
-                break;
-            case "Travel":
-                holder.imgCategory.setImageResource(R.drawable.ic_baseline_card_travel_24);
-                break;
-            case "Personal Care":
-                holder.imgCategory.setImageResource(R.drawable.ic_baseline_person_24);
-                break;
+        if(holder.getItemViewType() == ITEM){
+            holder.txtViewDescription.setText(AllTransactions.get(position-1).getDescription());
+            holder.txtViewAmount.setText("$ "+AllTransactions.get(position-1).getAmount().toString());
 
 
+            switch (AllTransactions.get(position-1).getCategory()) {
+                case "Shopping":
+                    holder.imgCategory.setImageResource(R.drawable.ic_baseline_shopping_cart_24);
+                    break;
+                case "Pets":
+                    holder.imgCategory.setImageResource(R.drawable.ic_baseline_pets_24);
+                    break;
+                case "Travel":
+                    holder.imgCategory.setImageResource(R.drawable.ic_baseline_card_travel_24);
+                    break;
+                case "Personal Care":
+                    holder.imgCategory.setImageResource(R.drawable.ic_baseline_person_24);
+                    break;
+
+
+            }
         }
+
+
+
     }
 
     @Override
     public int getItemCount() {
-        return (AllTransactions.size());
+        return (AllTransactions.size()+1);
     }
 
     public class ViewExpenseHolder extends RecyclerView.ViewHolder{

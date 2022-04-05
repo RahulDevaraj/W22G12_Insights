@@ -43,6 +43,11 @@
     <string name="txtSave">Save</string>
     <string name="txtCancel">Cancel</string>
     <string name="txtAccountSettings">Account Settings</string>
+    <string name="descriptionHeading">Description</string>
+    <string name="amountHeader">Amount</string>
+    <string name="imageHeader">Category</string>
+    <string name="editHeader">Edit</string>
+    <string name="deleteHeader">Delete</string>
 
     <string-array name="spinnerCategoryTypes">
         <item>Shopping</item>
