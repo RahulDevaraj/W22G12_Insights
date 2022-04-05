@@ -13,18 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Insights">
         <activity
-            android:name=".HomePage"
+            android:name=".activities.HomePage"
             android:exported="false"
             android:label="@string/title_activity_home_page"
             android:theme="@style/Theme.Insights.NoActionBar" />
         <activity
-            android:name=".Reggister"
+            android:name=".activities.Reggister"
             android:exported="false" />
         <activity
-            android:name=".ForgotPassword"
+            android:name=".activities.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".Splash"
+            android:name=".activities.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="false" />
 
         <meta-data

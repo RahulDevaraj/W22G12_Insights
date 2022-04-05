@@ -1,11 +1,9 @@
-package com.example.insights;
+package com.example.insights.adapters;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,21 +15,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.example.insights.R;
 import com.example.insights.databases.UserDatabase;
-import com.example.insights.interfaces.UserDao;
 import com.example.insights.interfaces.UserTransactionDao;
-import com.example.insights.model.User;
 import com.example.insights.model.UserTransaction;
 import com.example.insights.ui.edit.EditFragment;
-import com.example.insights.ui.viewexpense.ViewExpense_Fragment;
 import com.google.gson.Gson;
 
-import java.security.AccessController;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
