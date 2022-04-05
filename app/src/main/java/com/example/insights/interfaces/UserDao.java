@@ -23,4 +23,7 @@ public interface UserDao {
 
     @Query("UPDATE User SET amtlimit = :AmtLimit WHERE emailid=:Email")
     int SetLimit(Double AmtLimit,String Email);
+
+    @Query("UPDATE User SET amtlimit = :AmtLimit, password = :password WHERE emailid=:Email")
+    int changeAccountDetails(String password,Double AmtLimit,String Email);
 }

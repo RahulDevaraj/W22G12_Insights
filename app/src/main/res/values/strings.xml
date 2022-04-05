@@ -42,6 +42,7 @@
     <string name="errorMessageSearch">No Data to Visualise</string>
     <string name="txtSave">Save</string>
     <string name="txtCancel">Cancel</string>
+    <string name="txtAccountSettings">Account Settings</string>
 
     <string-array name="spinnerCategoryTypes">
         <item>Shopping</item>
