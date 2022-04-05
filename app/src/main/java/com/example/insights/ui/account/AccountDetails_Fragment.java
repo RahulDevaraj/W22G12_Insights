@@ -23,7 +23,6 @@ import androidx.navigation.Navigation;
 import androidx.room.Room;
 
 import com.example.insights.activities.HomePage;
-import com.example.insights.HomePage;
 import com.example.insights.R;
 import com.example.insights.databases.UserDatabase;
 import com.example.insights.databinding.AccountDetailsFragmentBinding;
