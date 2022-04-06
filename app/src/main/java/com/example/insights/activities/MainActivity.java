@@ -155,7 +155,11 @@ public class MainActivity extends AppCompatActivity {
 
                     runOnUiThread(()->{
                         if(user==null)
+                        {
+                            gsc.signOut();
                             Toast.makeText(this, "User Not Registered", Toast.LENGTH_SHORT).show();
+                        }
+
                         else
                         {
                             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
