@@ -1,5 +1,6 @@
 package com.example.insights.ui.account;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 
@@ -24,6 +26,7 @@ import androidx.room.Room;
 
 import com.example.insights.activities.HomePage;
 import com.example.insights.R;
+import com.example.insights.activities.MainActivity;
 import com.example.insights.databases.UserDatabase;
 import com.example.insights.databinding.AccountDetailsFragmentBinding;
 import com.example.insights.model.User;
@@ -81,12 +84,57 @@ public class AccountDetails_Fragment extends Fragment {
                         TextView editTextPasswordChangeConfirm = binding.edtTextPasswordChangeConfirm;
                         TextView edtTextSetLimitChange = binding.edtTextSetLimitChange;
                         Button BtnSaveSettings = binding.BtnSaveSettings;
+                        Button btnDeleteUser = binding.deleteUser;
 
                         textViewEmail.setText(user.getEmailId());
                         textViewUserName.setText(user.getUserId());
                         editTextPasswordChange.setText(user.getPassword());
                         editTextPasswordChangeConfirm.setText(user.getPassword());
                         edtTextSetLimitChange.setText(user.getAmtLimit().toString());
+
+                        btnDeleteUser.setOnClickListener((View view) -> {
+
+
+                            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    switch (which){
+                                        case DialogInterface.BUTTON_POSITIVE:
+                                            //Yes button clicked
+                                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                                            SharedPreferences.Editor editor = preferences.edit();
+                                            editor.clear();
+                                            editor.apply();
+                                            ExecutorService executorService = Executors.newSingleThreadExecutor();
+                                            executorService.execute(()->{
+
+                                                database.userDao().deleteAccount(user.getEmailId());
+
+                                                getActivity().runOnUiThread(()->{
+                                                    Toast.makeText(getActivity(), "User Deleted and Logged Out Successfully", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(getActivity(), MainActivity.class));
+                                                });
+
+                                            });
+
+
+                                            break;
+
+                                        case DialogInterface.BUTTON_NEGATIVE:
+                                            //No button clicked
+                                            Toast.makeText(getActivity(), "Deletion Cancelled", Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
+                                            //startActivity(new Intent(getActivity(), HomePage.class));
+                                            break;
+                                    }
+                                }
+                            };
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setMessage("Are you sure to Delete Account and Logout?").setPositiveButton("Yes", dialogClickListener)
+                                    .setNegativeButton("No", dialogClickListener).show();
+
+                        });
 
                         BtnSaveSettings.setOnClickListener((View view)-> {
                             if(editTextPasswordChange.getText().toString().isEmpty() || editTextPasswordChangeConfirm.getText().toString().isEmpty()||
