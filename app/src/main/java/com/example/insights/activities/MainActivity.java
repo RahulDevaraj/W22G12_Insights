@@ -145,8 +145,34 @@ public class MainActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
             try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                startActivity(new Intent(MainActivity.this, HomePage.class));
+                GoogleSignInAccount googleSignInAccount = task.getResult(ApiException.class);
+                String googleEmail = googleSignInAccount.getEmail();
+
+
+                ExecutorService executorService = Executors.newSingleThreadExecutor();
+                executorService.execute(()->{
+                    User user = db.userDao().findUserByEmail(googleEmail);
+
+                    runOnUiThread(()->{
+                        if(user==null)
+                            Toast.makeText(this, "User Not Registered", Toast.LENGTH_SHORT).show();
+                        else
+                        {
+                            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("USERID", user.getUserId());
+                            editor.putString("USEREMAIL", user.getEmailId());
+                            editor.putString("USERLIMIT", user.getAmtLimit().toString());
+                            editor.commit();
+
+                            gsc.signOut(); // for getting the login prompt again
+
+                            //home activity called
+                            startActivity(new Intent(MainActivity.this, HomePage.class));
+
+                        }
+                    });
+                });
 
             } catch (ApiException e) {
                 e.getMessage();
