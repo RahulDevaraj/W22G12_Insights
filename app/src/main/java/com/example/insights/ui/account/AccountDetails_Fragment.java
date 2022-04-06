@@ -122,8 +122,9 @@ public class AccountDetails_Fragment extends Fragment {
 
                                         case DialogInterface.BUTTON_NEGATIVE:
                                             //No button clicked
-
-                                            startActivity(new Intent(getActivity(), HomePage.class));
+                                            Toast.makeText(getActivity(), "Deletion Cancelled", Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
+                                            //startActivity(new Intent(getActivity(), HomePage.class));
                                             break;
                                     }
                                 }
@@ -132,6 +133,7 @@ public class AccountDetails_Fragment extends Fragment {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setMessage("Are you sure to Delete Account and Logout?").setPositiveButton("Yes", dialogClickListener)
                                     .setNegativeButton("No", dialogClickListener).show();
+
                         });
 
                         BtnSaveSettings.setOnClickListener((View view)-> {
