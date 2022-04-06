@@ -50,6 +50,7 @@
     <string name="imageHeader">Category</string>
     <string name="editHeader">Edit</string>
     <string name="deleteHeader">Delete</string>
+    <string name="userDeleteButtonText">DELETE USER AND LOGOUT</string>
 
     <string-array name="spinnerCategoryTypes">
         <item>Shopping</item>
