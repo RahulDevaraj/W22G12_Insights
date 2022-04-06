@@ -51,6 +51,7 @@
     <string name="editHeader">Edit</string>
     <string name="deleteHeader">Delete</string>
     <string name="userDeleteButtonText">DELETE USER AND LOGOUT</string>
+    <string name="StringOptions">Or Sign-In Using</string>
 
     <string-array name="spinnerCategoryTypes">
         <item>Shopping</item>
