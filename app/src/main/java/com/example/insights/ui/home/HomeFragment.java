@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
         String emailId = sharedPreferences.getString("USEREMAIL",null);
         String userLimit = sharedPreferences.getString("USERLIMIT",null);
 
-        textViewCurrentLimit.setText("The currently set Monthly Limit is $"+userLimit);
+        textViewCurrentLimit.setText("Current Monthly Limit : $"+userLimit);
 
 
         ExecutorService executorService = Executors.newSingleThreadExecutor();
