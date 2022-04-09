@@ -20,4 +20,4 @@ Line2: image.sysdir.1 = system-images\android-30\google_apis\x86\ - > image.sysd
 
 Line 3: tag.id=google_apis > tag.id=google_apis_playstore Save the file. 
 
-5. Run the emulator of the device for which the settings were made. This should work as I have enabled it right now :) 
+5. Run the emulator of the device for which the settings were made.
